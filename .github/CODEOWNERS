@@ -1,4 +1,6 @@
 /apps/gateway/ @defaei
+/apps/auth-service/ @defaei
+/apps/notification-service/ @defaei
 /apps/web/ @defaei
 /proto/ @defaei
 /apps/bi-service/ @aliemkee
