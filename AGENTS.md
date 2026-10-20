@@ -63,6 +63,12 @@ Follow these instructions for all work in this repository. When instructions con
 
 - Keep types close to their owning feature unless they are intentionally shared. Do not duplicate a type that is already defined by a shared contract or generated source.
 
+## Frontend Colors
+
+- Define every frontend color in the owning app's `globals.css` as a CSS variable and expose it through the app's theme or design-token system.
+- Consume colors through semantic tokens in UI code, such as `bg-background` or `text-secondary`, rather than hard-coded color values, arbitrary color utilities, or locally defined color variables.
+- When a needed color token does not exist, add it to `globals.css` and its theme mapping there before using it. Use semantic names based on purpose, not the color's visual value.
+
 ## NestJS Backend DTOs
 
 - In NestJS applications, define explicit DTOs at application/API boundaries; do not use persistence entities as request or response contracts.
