@@ -1,12 +1,14 @@
 "use client";
 
-import { useLoginForm } from "../hooks/use-login-form";
+import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
+import { setLoginData, togglePasswordVisibility } from "../slice";
 
 export default function LoginForm() {
-  const { isPasswordVisible, submissionMessage, togglePasswordVisibility, handleSubmit } = useLoginForm();
+  const dispatch = useAppDispatch();
+  const { isPasswordVisible, data } = useAppSelector((state) => state.login);
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
+    <form className="space-y-5">
       <div>
         <label htmlFor="username" className="mb-2 block text-sm font-bold">
           نام کاربری
@@ -15,6 +17,8 @@ export default function LoginForm() {
           id="username"
           name="username"
           type="text"
+          value={data.username}
+          onChange={(event) => dispatch(setLoginData({ field: "username", value: event.target.value }))}
           autoComplete="username"
           required
           placeholder="نام کاربری خود را وارد کنید"
@@ -31,6 +35,8 @@ export default function LoginForm() {
             id="password"
             name="password"
             type={isPasswordVisible ? "text" : "password"}
+            value={data.password}
+            onChange={(event) => dispatch(setLoginData({ field: "password", value: event.target.value }))}
             autoComplete="current-password"
             required
             placeholder="رمز عبور خود را وارد کنید"
@@ -38,7 +44,7 @@ export default function LoginForm() {
           />
           <button
             type="button"
-            onClick={togglePasswordVisibility}
+            onClick={() => dispatch(togglePasswordVisibility())}
             className="absolute left-3 top-1/2 grid size-9 -translate-y-1/2 cursor-pointer place-items-center rounded text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-primary"
             aria-label={isPasswordVisible ? "پنهان کردن رمز عبور" : "نمایش رمز عبور"}
             title={isPasswordVisible ? "پنهان کردن رمز عبور" : "نمایش رمز عبور"}
@@ -77,10 +83,6 @@ export default function LoginForm() {
       >
         ورود به حساب
       </button>
-
-      <p className="min-h-5 text-center text-xs text-muted-foreground" role="status" aria-live="polite">
-        {submissionMessage}
-      </p>
     </form>
   );
 }

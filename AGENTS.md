@@ -63,6 +63,10 @@ Follow these instructions for all work in this repository. When instructions con
 
 - Keep types close to their owning feature unless they are intentionally shared. Do not duplicate a type that is already defined by a shared contract or generated source.
 
+## Frontend Form Handling
+
+- For input `onChange` handlers, read the value from `event.target.value` and pass that value to the state update or action, for example: `onChange={(event) => dispatch(setField({ field: "username", value: event.target.value }))}`.
+
 ## Frontend Colors
 
 - Define every frontend color in the owning app's `globals.css` as a CSS variable and expose it through the app's theme or design-token system.
