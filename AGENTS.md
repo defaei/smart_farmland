@@ -69,6 +69,10 @@ Follow these instructions for all work in this repository. When instructions con
 - Consume colors through semantic tokens in UI code, such as `bg-background` or `text-secondary`, rather than hard-coded color values, arbitrary color utilities, or locally defined color variables.
 - When a needed color token does not exist, add it to `globals.css` and its theme mapping there before using it. Use semantic names based on purpose, not the color's visual value.
 
+## Frontend Rendering Effects
+
+- Avoid heavy box shadows and shader-like visual effects because they can render poorly or perform badly in Safari. Prefer subtle shadows and lightweight CSS effects.
+
 ## NestJS Backend DTOs
 
 - In NestJS applications, define explicit DTOs at application/API boundaries; do not use persistence entities as request or response contracts.
