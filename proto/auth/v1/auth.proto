@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Auth service: authentication (JWT access/refresh) and authorization (role claim).
+// Methods that act on the current user (GetMe, ChangePassword) read the access token
+// from gRPC metadata:  authorization: Bearer <access_token>
+service AuthService {
+  // Username/password -> access + refresh token pair.
+  rpc Login(LoginRequest) returns (TokenResponse);
+
+  // Exchange a refresh token for a new pair (rotation; the old refresh token is revoked).
+  rpc RefreshToken(RefreshTokenRequest) returns (TokenResponse);
+
+  // Revoke a refresh token.
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+
+  // Current user (requires Bearer access token in metadata).
+  rpc GetMe(GetMeRequest) returns (User);
+
+  // For the gateway / other services: validate an access token.
+  // Invalid or expired tokens return valid=false (not an RPC error).
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
+
+  // Change password (requires Bearer access token in metadata); revokes all refresh tokens.
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+message LogoutRequest {
+  string refresh_token = 1;
+}
+
+message LogoutResponse {}
+
+message GetMeRequest {}
+
+message VerifyTokenRequest {
+  string access_token = 1;
+}
+
+message ChangePasswordRequest {
+  string old_password = 1;
+  string new_password = 2;
+}
+
+message ChangePasswordResponse {
+  string message = 1;
+}
+
+message TokenResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  string token_type = 3;
+  int64 expires_in = 4;
+}
+
+message User {
+  string id = 1;
+  string username = 2;
+  string role = 3;
+  bool is_active = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message VerifyTokenResponse {
+  bool valid = 1;
+  string user_id = 2;
+  string username = 3;
+  string role = 4;
+}
