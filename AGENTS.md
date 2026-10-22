@@ -17,6 +17,11 @@ Follow these instructions for all work in this repository. When instructions con
 - If a requested change appears to require an architectural change, explain the conflict and ask before proceeding with that part.
 - Do not treat draft documentation as an implemented contract. Keep proposals labeled as proposals until they are agreed and implemented.
 
+## Agent Skill Files
+
+- Do not add a validation or verification section to a `SKILL.md` unless explicitly requested.
+- When creating or editing a skill, do not test whether its described workflow works or otherwise validate the skill; the user will review it. Continue to validate implementation code when a task also changes code.
+
 ## Empty Directories
 
 - Every intentionally empty directory that should be retained in the repository must contain an empty `.gitkeep` file, because Git does not track directories by themselves.
@@ -66,6 +71,13 @@ Follow these instructions for all work in this repository. When instructions con
 ## Frontend Form Handling
 
 - For input `onChange` handlers, read the value from `event.target.value` and pass that value to the state update or action, for example: `onChange={(event) => dispatch(setField({ field: "username", value: event.target.value }))}`.
+
+## Frontend Async Status and Yup Validation
+
+- Declare the shared `Status` type in `apps/web/src/shared/types.ts` as `"idle" | "fetching" | "pending" | "completed" | "rejected"`; reuse it for feature state instead of defining feature-local status unions.
+- Set status to `fetching` while a GET operation is in progress. Set status to `pending` while a create, update, or delete (CUD) operation is in progress. Set a finished operation to `completed` or `rejected` according to its result.
+- Put reusable Yup validation handling in the web app's shared validation area. The helper must accept the input data and Yup schema, handle Yup validation errors, and return a result with at most one validation message. Callers should use the helper instead of adding their own Yup `try/catch` blocks.
+- Show at most one toast for a validation or operation outcome. Do not map over Yup's error messages or display multiple toasts for one attempt.
 
 ## Frontend Colors
 

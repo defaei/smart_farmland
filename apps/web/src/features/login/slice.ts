@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { Status } from "@/shared/types";
 import type { LoginDataPayload, LoginInitialState } from "./types";
 
 const initialState: LoginInitialState = {
@@ -7,6 +8,7 @@ const initialState: LoginInitialState = {
     username: "",
     password: "",
   },
+  status: "idle",
 };
 
 export const loginSlice = createSlice({
@@ -19,8 +21,11 @@ export const loginSlice = createSlice({
     setLoginData(state, action: PayloadAction<LoginDataPayload>) {
       state.data[action.payload.field] = action.payload.value;
     },
+    setLoginStatus(state, action: PayloadAction<Status>) {
+      state.status = action.payload;
+    },
   },
 });
 
-export const { setLoginData, togglePasswordVisibility } = loginSlice.actions;
+export const { setLoginData, setLoginStatus, togglePasswordVisibility } = loginSlice.actions;
 export const loginReducer = loginSlice.reducer;

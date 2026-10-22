@@ -1,3 +1,5 @@
+import type { Status } from "@/shared/types";
+
 export interface LoginData {
   username: string;
   password: string;
@@ -13,4 +15,5 @@ export interface LoginDataPayload {
 export interface LoginInitialState {
   isPasswordVisible: boolean;
   data: LoginData;
+  status: Status;
 }
