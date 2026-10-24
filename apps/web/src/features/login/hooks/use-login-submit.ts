@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { validateWithYup } from "@/shared/validation/yup-validation";
 import { store } from "@/shared/redux/store";
-import { loginTypeSchema, loginLenthSchema } from "../validation";
+import { loginTypeSchema, loginLenthSchema, INVALID_LOGIN_MESSAGE } from "../validation";
 
 export function useLoginSubmit() {
   const dispatch = useAppDispatch();
@@ -26,6 +26,13 @@ export function useLoginSubmit() {
     if (!lengthValidation.valid) {
       toast.error(lengthValidation.message);
       return;
+    }
+
+    // TODO: this is a mock validation and it should connect to api gateway to validate
+    if (data.username === "admin" && data.password === "12345678") {
+      location.replace("/farmland");
+    } else {
+      toast.error(INVALID_LOGIN_MESSAGE);
     }
   };
 }

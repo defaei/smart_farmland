@@ -1,7 +1,7 @@
 import { object, string, type ObjectSchema } from "yup";
 import type { LoginData } from "./types";
 
-const INVALID_LOGIN_MESSAGE = "نام کاربری یا رمز عبور صحیح نیست";
+export const INVALID_LOGIN_MESSAGE = "نام کاربری یا رمز عبور صحیح نیست";
 
 export const loginTypeSchema: ObjectSchema<LoginData> = object({
   username: string().strict().typeError(INVALID_LOGIN_MESSAGE).required("نام کاربری الزامی است."),

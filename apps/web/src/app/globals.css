@@ -14,4 +14,18 @@
   --color-accent: #b99a5b;
   --color-accent-foreground: #1f3429;
   --color-border: #d2ded3;
+  --color-farm-soil-a: #ddc99d;
+  --color-farm-soil-b: #e6d4ad;
+  --color-farm-soil-c: #d5bf8d;
+  --color-farm-soil-d: #e2cda0;
+  --color-farm-edge: #806c49;
+  --color-farm-crop: #557743;
+  --color-farm-crop-light: #769b5e;
+  --color-farm-selected: #176e5c;
+  --color-farm-good: #286846;
+  --color-farm-good-bg: #e4f0e7;
+  --color-farm-low: #976513;
+  --color-farm-low-bg: #f8efd9;
+  --color-farm-high: #a3483c;
+  --color-farm-high-bg: #f8e8e4;
 }

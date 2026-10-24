@@ -81,9 +81,9 @@ Follow these instructions for all work in this repository. When instructions con
 
 ## Frontend Colors
 
-- Define every frontend color in the owning app's `globals.css` as a CSS variable and expose it through the app's theme or design-token system.
+- Define every frontend color directly in the owning app's `globals.css` inside `@theme inline`, using its hex value there. Do not define frontend colors in `:root` or alias theme colors through separate custom properties.
 - Consume colors through semantic tokens in UI code, such as `bg-background` or `text-secondary`, rather than hard-coded color values, arbitrary color utilities, or locally defined color variables.
-- When a needed color token does not exist, add it to `globals.css` and its theme mapping there before using it. Use semantic names based on purpose, not the color's visual value.
+- When a needed color token does not exist, add it to `@theme inline` in `globals.css` before using it. Use semantic names based on purpose, not the color's visual value.
 
 ## Frontend Rendering Effects
 

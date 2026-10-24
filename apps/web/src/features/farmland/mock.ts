@@ -1,0 +1,48 @@
+import type { FarmlandZone } from "./types";
+
+export const farmlandZones: FarmlandZone[] = [
+  {
+    id: "M1",
+    moisturePercent: 68,
+    waterNote: "رطوبت برای رشد گیاه مناسب است.",
+    ph: 6.7,
+    organicMatterPercent: 3.4,
+    nitrogen: "balanced",
+    phosphorus: "balanced",
+    potassium: "balanced",
+    soilSummary: "خاک لومی با مواد آلی مناسب و تعادل خوب عناصر غذایی.",
+  },
+  {
+    id: "M2",
+    moisturePercent: 42,
+    waterNote: "رطوبت کمتر از محدوده پیشنهادی است.",
+    ph: 7.1,
+    organicMatterPercent: 2.7,
+    nitrogen: "low",
+    phosphorus: "balanced",
+    potassium: "balanced",
+    soilSummary: "بافت خاک مناسب است؛ آبیاری سبک و بررسی نیتروژن پیشنهاد می‌شود.",
+  },
+  {
+    id: "M3",
+    moisturePercent: 76,
+    waterNote: "رطوبت بالاست؛ پیش از آبیاری بعدی خاک را بررسی کنید.",
+    ph: 6.4,
+    organicMatterPercent: 3.8,
+    nitrogen: "balanced",
+    phosphorus: "high",
+    potassium: "balanced",
+    soilSummary: "خاک غنی از مواد آلی است؛ زهکشی این بخش را زیر نظر داشته باشید.",
+  },
+  {
+    id: "M4",
+    moisturePercent: 59,
+    waterNote: "رطوبت در محدوده مناسب قرار دارد.",
+    ph: 6.9,
+    organicMatterPercent: 3.1,
+    nitrogen: "balanced",
+    phosphorus: "balanced",
+    potassium: "low",
+    soilSummary: "وضعیت کلی خاک متعادل است؛ پتاسیم در نوبت بعدی بررسی شود.",
+  },
+];
